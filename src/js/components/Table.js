@@ -18,7 +18,7 @@ class Table extends Component {
             <th>Concepto 6</th>
             <th>Balance actual</th>
             <th>Activo</th>
-            <th>Última versión </th>
+            <th>Última venta </th>
           </tr>
           <tr>
             <td>xxxxxxx</td>
