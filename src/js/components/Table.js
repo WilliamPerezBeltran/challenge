@@ -1,6 +1,17 @@
 import React, { Component } from "react";
-
+import * as FetchData from "../services/FetchData";
 class Table extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      trades: []
+    };
+  }
+
+  componentDidMount = async () => {
+    let data = await FetchData.getAllTrades();
+  };
+
   render() {
     return (
       <div>
