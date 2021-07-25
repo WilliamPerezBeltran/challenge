@@ -4,18 +4,32 @@ class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trades: []
+      trades: [],
+      companySelected: "",
+      page: 0,
+      pages: 0,
+      rowsPerPage: 0,
+      total: 0,
     };
   }
 
   componentDidMount = async () => {
     let data = await FetchData.getAllTrades();
+    if (data) {
+      this.setState({
+        trades: data.data,
+        page: data.page,
+        pages: data.pages,
+        rowsPerPage: data.rowsPerPage,
+        total: data.total,
+      });
+    }
   };
 
   render() {
     return (
       <div>
-        <p>Simple table with header</p>
+        <p>Business information table</p>
         <table>
           <tr>
             <th>Id</th>
@@ -31,20 +45,27 @@ class Table extends Component {
             <th>Activo</th>
             <th>Última venta </th>
           </tr>
-          <tr>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-            <td>xxxxxxx</td>
-          </tr>
+
+          {this.state.trades
+            .slice(0, this.state.total)
+            .map((trade, tradeId) => {
+              return (
+                <tr key={tradeId}>
+                  <td>{trade.id}</td>
+                  <td>{trade.trade}</td>
+                  <td>{trade.cuit}</td>
+                  <td>{trade.concept1}</td>
+                  <td>{trade.concept2}</td>
+                  <td>{trade.concept3}</td>
+                  <td>{trade.concept4}</td>
+                  <td>{trade.concept5}</td>
+                  <td>{trade.concept6}</td>
+                  <td>{trade.actualBalance}</td>
+                  <td>{trade.active ? 1 : 0}</td>
+                  <td>{trade.lastSale}</td>
+                </tr>
+              );
+            })}
         </table>
       </div>
     );
