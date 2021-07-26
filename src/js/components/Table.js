@@ -12,7 +12,8 @@ class Table extends Component {
       pages: 0,
       rowsPerPage: 0,
       total: 0,
-      totalItems: 0,
+      totalItems: [],
+      renderData: [],
       valuesId: [],
       valuesCuit: [],
       valuesTrade: [],
@@ -27,7 +28,6 @@ class Table extends Component {
     let data = await FetchData.getAllTrades();
 
     if (data) {
-      this.getTotalData(data.data, data.total);
       this.splitDataIntoArrayByKey();
       this.setState({
         trades: data.data,
@@ -35,13 +35,9 @@ class Table extends Component {
         pages: data.pages,
         rowsPerPage: data.rowsPerPage,
         total: data.total,
+        totalItems: data.data.slice(0, data.total),
       });
     }
-  };
-  getTotalData = async (data, total) => {
-    this.setState({
-      totalItems: data.slice(0, total),
-    });
   };
 
   splitDataIntoArrayByKey = () => {
@@ -62,6 +58,44 @@ class Table extends Component {
     });
   };
 
+  requestSortTrade = () => {
+    let sortedByTrade = this.state.totalItems.sort((a, b) => {
+      if (a.trade < b.trade) {
+        return -1;
+      }
+      if (a.trade > b.trade) {
+        return 1;
+      }
+      return 0;
+    });
+
+    this.setState({
+      totalItems: sortedByTrade,
+    });
+  };
+
+  requestSortCuit = () => {
+    let sortedByCuit = this.state.totalItems.sort((a, b) => {
+      let as = parseInt(a.cuit.split("-")[0], 10);
+      let bs = parseInt(b.cuit.split("-")[0], 10);
+      return as - bs;
+    });
+
+    this.setState({
+      totalItems: sortedByCuit,
+    });
+  };
+
+  requestSortId = () => {
+    let sortedById = this.state.totalItems.sort((a, b) => {
+      return a.id - b.id;
+    });
+
+    this.setState({
+      totalItems: sortedById,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -75,11 +109,25 @@ class Table extends Component {
         <table className="table table-striped">
           <tbody>
             <tr>
-              <th style={{ "font-size": "18px", "font-weight": "normal" }}>
+              <th>
                 Id
+                <button type="button" onClick={() => this.requestSortId()}>
+                  order
+                </button>
               </th>
-              <th>Comercio</th>
-              <th>Cuit</th>
+
+              <th>
+                Comercio
+                <button type="button" onClick={() => this.requestSortTrade()}>
+                  order
+                </button>
+              </th>
+              <th>
+                Cuit
+                <button type="button" onClick={() => this.requestSortCuit()}>
+                  order
+                </button>
+              </th>
               <th>Concepto 1</th>
               <th>Concepto 2</th>
               <th>Concepto 3</th>
@@ -91,26 +139,24 @@ class Table extends Component {
               <th>Última venta </th>
             </tr>
 
-            {this.state.trades
-              .slice(0, this.state.total)
-              .map((trade, tradeId) => {
-                return (
-                  <tr key={tradeId}>
-                    <td>{trade.id}</td>
-                    <td>{trade.trade}</td>
-                    <td>{trade.cuit}</td>
-                    <td>{trade.concept1}</td>
-                    <td>{trade.concept2}</td>
-                    <td>{trade.concept3}</td>
-                    <td>{trade.concept4}</td>
-                    <td>{trade.concept5}</td>
-                    <td>{trade.concept6}</td>
-                    <td>{trade.actualBalance}</td>
-                    <td>{trade.active ? 1 : 0}</td>
-                    <td>{trade.lastSale}</td>
-                  </tr>
-                );
-              })}
+            {this.state.totalItems.map((trade, tradeId) => {
+              return (
+                <tr key={tradeId}>
+                  <td>{trade.id}</td>
+                  <td>{trade.trade}</td>
+                  <td>{trade.cuit}</td>
+                  <td>{trade.concept1}</td>
+                  <td>{trade.concept2}</td>
+                  <td>{trade.concept3}</td>
+                  <td>{trade.concept4}</td>
+                  <td>{trade.concept5}</td>
+                  <td>{trade.concept6}</td>
+                  <td>{trade.actualBalance}</td>
+                  <td>{trade.active ? 1 : 0}</td>
+                  <td>{trade.lastSale}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
