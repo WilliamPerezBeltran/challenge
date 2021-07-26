@@ -7,18 +7,6 @@ export const filterData = async (
   activeSelected
 ) => {
   try {
-    console.log("idSelected");
-    console.log(idSelected);
-
-    console.log("cuitSelected");
-    console.log(cuitSelected);
-
-    console.log("tradeSelected");
-    console.log(tradeSelected);
-
-    console.log("activeSelected");
-    console.log(activeSelected);
-
     const url = `${constants.appLocalBaseUrl}filterData`;
     let formData = new FormData();
     formData.append("id", idSelected);

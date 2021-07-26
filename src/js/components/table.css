@@ -1,0 +1,27 @@
+table,
+td,
+th {
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-style: solid;
+  border-width: 1px;
+}
+
+table {
+  margin-top: 2%;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+tr {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+}

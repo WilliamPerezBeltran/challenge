@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as FetchData from "../services/FetchData";
 import Filter from "./Filter";
+import "./table.css";
 class Table extends Component {
   constructor(props) {
     super(props);
@@ -64,17 +65,19 @@ class Table extends Component {
   render() {
     return (
       <div>
-        <p>Business information table</p>
+        <p className="title">Business information table</p>
         <Filter
           valuesId={this.state.valuesId}
           valuesCuit={this.state.valuesCuit}
           valuesTrade={this.state.valuesTrade}
           valuesActive={this.state.valuesActive}
         />
-        <table>
+        <table className="table table-striped">
           <tbody>
             <tr>
-              <th>Id</th>
+              <th style={{ "font-size": "18px", "font-weight": "normal" }}>
+                Id
+              </th>
               <th>Comercio</th>
               <th>Cuit</th>
               <th>Concepto 1</th>

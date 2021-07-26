@@ -99,7 +99,7 @@ class Filter extends Component {
         </div>
 
         <div className="container">
-          <button className="" onClick={this.getFilteredData}>
+          <button className="button" onClick={this.getFilteredData}>
             Disabled Button
           </button>
         </div>

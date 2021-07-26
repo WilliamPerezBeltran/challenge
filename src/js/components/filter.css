@@ -5,3 +5,16 @@
 .sub-container {
   width: 20%;
 }
+.button {
+  margin-top: 2%;
+  padding: 8px 32px;
+  font-size: 16px;
+  color: hsl(0, 0%, 50%);
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-style: solid;
+  border-width: 1px;
+  transition: all 100ms;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
