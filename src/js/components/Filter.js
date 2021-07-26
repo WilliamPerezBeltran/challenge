@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import "./filter.css";
+import * as FetchData from "../services/FetchFilterData";
 class Filter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      idSelected: null,
-      cuitSelected: null,
-      tradeSelected: null,
-      activeSelected: null,
+      idSelected: "",
+      cuitSelected: "",
+      tradeSelected: "",
+      activeSelected: Boolean,
     };
   }
   dataIds = () => {
@@ -41,6 +42,15 @@ class Filter extends Component {
 
   onChangeActive = (option) => {
     this.setState({ activeSelected: option });
+  };
+
+  getFilteredData = async () => {
+    let data = await FetchData.filterData(
+      this.state.idSelected.label,
+      this.state.cuitSelected.label,
+      this.state.tradeSelected.label,
+      this.state.activeSelected.label === "activo" ? 1 : 0
+    );
   };
 
   render() {
@@ -86,6 +96,12 @@ class Filter extends Component {
               value={this.state.activeSelected}
             />
           </div>
+        </div>
+
+        <div className="container">
+          <button className="" onClick={this.getFilteredData}>
+            Disabled Button
+          </button>
         </div>
       </div>
     );
