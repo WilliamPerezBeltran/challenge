@@ -96,9 +96,41 @@ class Table extends Component {
     });
   };
 
+  handleClick = (event) => {
+    this.setState({
+      page: parseInt(event.target.id, 10),
+    });
+  };
+
   render() {
+    const indexOfLastTodo = this.state.page * this.state.rowsPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - this.state.rowsPerPage;
+    const currentTodos = this.state.totalItems.slice(
+      indexOfFirstTodo,
+      indexOfLastTodo
+    );
+
+    const pageNumbers = [];
+    for (
+      let i = 1;
+      i <= Math.ceil(this.state.totalItems.length / this.state.rowsPerPage);
+      i++
+    ) {
+      pageNumbers.push(i);
+    }
+
+    const renderPageNumbers = pageNumbers.map((number) => {
+      return (
+        <div className="containerPagination" key={number}>
+        <div className="pagination" key={number} id={number} onClick={this.handleClick}>
+          {number}
+        </div>
+        </div>
+      );
+    });
+
     return (
-      <div>
+      <div className="parentContainter">
         <p className="title">Business information table</p>
         <Filter
           valuesId={this.state.valuesId}
@@ -139,7 +171,7 @@ class Table extends Component {
               <th>Última venta </th>
             </tr>
 
-            {this.state.totalItems.map((trade, tradeId) => {
+            {currentTodos.map((trade, tradeId) => {
               return (
                 <tr key={tradeId}>
                   <td>{trade.id}</td>
@@ -159,6 +191,14 @@ class Table extends Component {
             })}
           </tbody>
         </table>
+
+         <div className="containerPagination" >
+        {renderPageNumbers}
+        </div>
+
+
+
+       
       </div>
     );
   }

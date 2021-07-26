@@ -25,3 +25,26 @@ tr {
 .title {
   text-align: center;
 }
+
+.parentContainter {
+  padding: 2%;
+}
+.containerPagination{
+  padding-top: 1%;
+display: flex;
+/*border: 1px solid blue;*/
+border-color: hsl(0, 0%, 80%);
+width: 20%;
+
+}
+.pagination{
+  border:1px solid ;
+  border-color: hsl(0, 0%, 80%);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+}
