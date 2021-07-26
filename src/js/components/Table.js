@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as FetchData from "../services/FetchData";
+import Filter from "./Filter";
 class Table extends Component {
   constructor(props) {
     super(props);
@@ -10,12 +11,23 @@ class Table extends Component {
       pages: 0,
       rowsPerPage: 0,
       total: 0,
+      totalItems: 0,
+      valuesId: [],
+      valuesCuit: [],
+      valuesTrade: [],
+      valuesActive: [
+        { label: "activo", value: 1 },
+        { label: "inactivo", value: 0 },
+      ],
     };
   }
 
   componentDidMount = async () => {
     let data = await FetchData.getAllTrades();
+
     if (data) {
+      this.getTotalData(data.data, data.total);
+      this.splitDataIntoArrayByKey();
       this.setState({
         trades: data.data,
         page: data.page,
@@ -25,11 +37,40 @@ class Table extends Component {
       });
     }
   };
+  getTotalData = async (data, total) => {
+    this.setState({
+      totalItems: data.slice(0, total),
+    });
+  };
+
+  splitDataIntoArrayByKey = () => {
+    let newObject = {};
+
+    this.state.totalItems.forEach((obj) => {
+      Object.keys(obj).forEach((key) => {
+        newObject[key] = (newObject[key] || []).concat([
+          { label: obj[key], value: obj.id },
+        ]);
+      });
+    });
+
+    this.setState({
+      valuesId: newObject.id,
+      valuesCuit: newObject.cuit,
+      valuesTrade: newObject.trade,
+    });
+  };
 
   render() {
     return (
       <div>
         <p>Business information table</p>
+        <Filter
+          valuesId={this.state.valuesId}
+          valuesCuit={this.state.valuesCuit}
+          valuesTrade={this.state.valuesTrade}
+          valuesActive={this.state.valuesActive}
+        />
         <table>
           <tbody>
             <tr>
