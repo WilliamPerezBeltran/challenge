@@ -45,12 +45,20 @@ class Filter extends Component {
   };
 
   getFilteredData = async () => {
-    let data = await FetchData.filterData(
-      this.state.idSelected.label,
-      this.state.cuitSelected.label,
-      this.state.tradeSelected.label,
-      this.state.activeSelected.label === "activo" ? 1 : 0
-    );
+    if (
+      this.state.idSelected != "" &&
+      this.state.cuitSelected != "" &&
+      this.state.tradeSelected != ""
+    ) {
+      let data = await FetchData.filterData(
+        this.state.idSelected.label,
+        this.state.cuitSelected.label,
+        this.state.tradeSelected.label,
+        this.state.activeSelected.label === "activo" ? 1 : 0
+      );
+    } else {
+      alert("campos vacios por favor llenar los filtros");
+    }
   };
 
   render() {
@@ -100,7 +108,7 @@ class Filter extends Component {
 
         <div className="container">
           <button className="button" onClick={this.getFilteredData}>
-            filter data 
+            filter data
           </button>
         </div>
       </div>

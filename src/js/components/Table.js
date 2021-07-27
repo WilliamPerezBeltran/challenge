@@ -28,15 +28,17 @@ class Table extends Component {
     let data = await FetchData.getAllTrades();
 
     if (data) {
-      this.splitDataIntoArrayByKey();
-      this.setState({
-        trades: data.data,
-        page: data.page,
-        pages: data.pages,
-        rowsPerPage: data.rowsPerPage,
-        total: data.total,
-        totalItems: data.data.slice(0, data.total),
-      });
+      this.setState(
+        {
+          trades: data.data,
+          page: data.page,
+          pages: data.pages,
+          rowsPerPage: data.rowsPerPage,
+          total: data.total,
+          totalItems: data.data.slice(0, data.total),
+        },
+        this.splitDataIntoArrayByKey
+      );
     }
   };
 
@@ -122,9 +124,14 @@ class Table extends Component {
     const renderPageNumbers = pageNumbers.map((number) => {
       return (
         <div className="containerPagination" key={number}>
-        <div className="pagination" key={number} id={number} onClick={this.handleClick}>
-          {number}
-        </div>
+          <div
+            className="pagination"
+            key={number}
+            id={number}
+            onClick={this.handleClick}
+          >
+            {number}
+          </div>
         </div>
       );
     });
@@ -192,13 +199,7 @@ class Table extends Component {
           </tbody>
         </table>
 
-         <div className="containerPagination" >
-        {renderPageNumbers}
-        </div>
-
-
-
-       
+        <div className="containerPagination">{renderPageNumbers}</div>
       </div>
     );
   }
