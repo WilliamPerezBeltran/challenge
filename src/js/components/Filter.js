@@ -46,9 +46,9 @@ class Filter extends Component {
 
   getFilteredData = async () => {
     if (
-      this.state.idSelected != "" &&
-      this.state.cuitSelected != "" &&
-      this.state.tradeSelected != ""
+      this.state.idSelected !== "" ||
+      this.state.cuitSelected !== "" ||
+      this.state.tradeSelected !== ""
     ) {
       let data = await FetchData.filterData(
         this.state.idSelected.label,
@@ -56,8 +56,12 @@ class Filter extends Component {
         this.state.tradeSelected.label,
         this.state.activeSelected.label === "activo" ? 1 : 0
       );
+
+      if (data) {
+        this.props.parentCallback(data);
+      }
     } else {
-      alert("campos vacios por favor llenar los filtros");
+      alert("Empty fields please fill in the filters");
     }
   };
 

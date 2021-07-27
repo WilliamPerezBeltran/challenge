@@ -5,7 +5,24 @@ export const getAllTrades = async () => {
     let data = db;
     return data;
   } catch (error) {
-    console.log("error in getAllTrades");
-    console.log(error);
+    console.log(`faile at getAllTrades in FetchData Service. Error: ${error}`);
   }
 };
+
+// export const getAllTrades = async () => {
+//   try {
+//     const url = `${constants.appLocalBaseUrl}getData`;
+
+//     let response = await fetch(url, {
+//       method: "GET",
+//       headers: {
+//         Accept: "application/json",
+//       }
+//     });
+
+//     let responseJson = await response.json();
+//     return responseJson;
+//   } catch (error) {
+//   	console.log(`faile at getAllTrades in FetchData Service. Error: ${error}`);
+//   }
+// };

@@ -104,6 +104,20 @@ class Table extends Component {
     });
   };
 
+  handleCallback = (data) => {
+    this.setState(
+      {
+        trades: data.data,
+        page: data.page,
+        pages: data.pages,
+        rowsPerPage: data.rowsPerPage,
+        total: data.total,
+        totalItems: data.data.slice(0, data.total),
+      },
+      this.splitDataIntoArrayByKey
+    );
+  };
+
   render() {
     const indexOfLastTodo = this.state.page * this.state.rowsPerPage;
     const indexOfFirstTodo = indexOfLastTodo - this.state.rowsPerPage;
@@ -144,6 +158,7 @@ class Table extends Component {
           valuesCuit={this.state.valuesCuit}
           valuesTrade={this.state.valuesTrade}
           valuesActive={this.state.valuesActive}
+          parentCallback={this.handleCallback}
         />
         <table className="table table-striped">
           <tbody>
