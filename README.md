@@ -27,6 +27,7 @@ En estos momentos se utilizaron los archivos que se encuentran en la carpeta jso
 
 - Para pasar los datos entre componentes se utilizo props , no se utilizo redux (lo ideal).
 - La paginación no es optima puesto que no es el objectivo de la prueba.
+- Para filtros se puede seleccionar el item o insertando el string deseado para su busqueda.
 
 
 ## Qué incluye

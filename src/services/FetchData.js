@@ -1,5 +1,4 @@
 import db from "../json/db.json";
-import * as constants from "../Constants";
 
 export const getAllTrades = async () => {
   try {

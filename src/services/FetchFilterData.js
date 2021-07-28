@@ -1,4 +1,3 @@
-import * as constants from "../Constants";
 import db from "../json/dbFilter.json";
 
 export const filterData = async () => {
