@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Challenge
+- Ejercicio propuesto por Koibanx
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Stack
 
-## Available Scripts
+- React 17.0.2
 
-In the project directory, you can run:
+### Clone repo
 
-### `yarn start`
+```bash
+# Clone repo
+$ git clone https://github.com/WilliamPerezBeltran/challenge.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Ir al directorio del app
+$ cd challenge
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Instalar dependencias 
+$ npm install
 
-### `yarn test`
+# Ejecutar app
+$ npm start 
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Observaciones 
+- En la carpeta services hay dos archivos FetchData.js y FetchFilterData.js el cual está comentado y representa el código cuando se utilice la conexión con una api real. 
+En estos momentos se utilizaron los archivos que se encuentran en la carpeta json (db.json y dbFilter.json) estos archivos simularon la respuesta de la api. 
 
-### `yarn build`
+- Para pasar los datos entre componentes se utilizo props , no se utilizo redux (lo ideal).
+- La paginación no es optima puesto que no es el objectivo de la prueba.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Qué incluye
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+├───public/
+│   ├───favicon.ico
+│   ├───index.html
+│   ├───logo192.png
+│   ├───logo512.png
+│   ├───manifest.json
+│   └───robots.txt
+├───src/
+│   ├───js/
+│   │   ├───components/
+│   │   │   ├───Filter.js
+│   │   │   ├───Table.js
+│   │   │   ├───filter.css
+│   │   │   └───table.css
+│   │   ├───json/
+│   │   │   ├───db.json
+│   │   │   └───dbFilter.json
+│   │   ├───services/
+│   │   │   ├───FetchData.js
+│   │   │   └───FetchFilterData.js
+│   │   ├───Constants.js
+│   │   └───Main.js
+│   ├───App.css
+│   ├───App.js
+│   ├───App.test.js
+│   ├───index.css
+│   ├───index.js
+│   ├───logo.svg
+│   ├───reportWebVitals.js
+│   └───setupTests.js
+├───README.md
+├───package-lock.json
+├───package.json
+└───yarn.lock
+```
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Creador
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**William Pérez**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- <https://github.com/WilliamPerezBeltran>
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
